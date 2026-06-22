@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAB_NPM_CASE // V1.0</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">NODE_LAB // P4.NPM_PACKAGE</div>
+        <button class="btn-theme" onclick="toggleTheme()">← TEMA</button>
+    </header>
+
+    <div class="layout-grid">
+        <div class="panel">
+            <div class="panel-title">// SOURCE_STRING (BUFFER_INPUT)</div>
+            <input type="text" id="texto" placeholder="Escribir cadena de texto..." oninput="transformar()">
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">// NPM_UPPER_CASE_OUTPUT</div>
+            <div class="output-box" id="resultado"></div>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        }
+
+        async function transformar() {
+            const txt = document.getElementById('texto').value;
+            const res = await fetch(`/convertir?texto=${encodeURIComponent(txt)}`);
+            const data = await res.text();
+            document.getElementById('resultado').innerText = data;
+        }
+    </script>
+</body>
+</html>

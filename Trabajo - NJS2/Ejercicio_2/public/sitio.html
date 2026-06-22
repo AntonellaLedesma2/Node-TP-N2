@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAB_FS_HTTP // V1.0</title>
+    <link rel="stylesheet" href="/style.css"> <!-- Pedido al servidor, que lo lee con fs y lo sirve con http -->
+</head>
+<body>
+
+    <!-- Encabezado con título y botón de cambio de tema -->
+    <header>
+        <div class="logo">NODE_LAB // P2.FS_HTTP</div>
+        <button class="btn-theme" onclick="toggleTheme()">← TEMA</button>
+    </header>
+
+    <div class="layout-grid">
+
+        <!-- Panel con la explicación de cómo se sirvió esta página -->
+        <div class="panel">
+            <h1>Servido desde File System</h1>
+            <p>Este archivo HTML y el archivo CSS externo mapeado fueron leídos de forma asíncrona mediante el buffer nativo de Node.js 'FS' y renderizados a través del módulo 'HTTP'.</p>
+        </div>
+
+        <!-- Consola con líneas fijas (texto estático) que simulan el log del servidor -->
+        <div class="console">
+            <div class="console-title">// FS STREAM MONITOR</div>
+            <div>[STREAM_INIT] Petición entrante registrada en puerto 3002</div>
+            <div>[FS_READ] Leyendo 'public/sitio.html'... OK</div>
+            <div>[FS_READ] Leyendo 'public/style.css'... OK</div>
+            <div>[HTTP_RESPONSE] Escribiendo cabeceras text/html y text/css</div>
+            <div>[STATUS] 200 Content Streams despachados correctamente.</div>
+        </div>
+    </div>
+
+    <script>
+        // Alterna entre tema oscuro y claro cambiando un atributo en <body>
+        function toggleTheme() {
+            const body = document.body;
+            body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        }
+    </script>
+</body>
+</html>

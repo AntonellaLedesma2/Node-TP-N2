@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../Ejercicio_2"
+		},
+		{
+			"path": "../Ejercicio_3"
+		},
+		{
+			"path": "../Ejercicio_4"
+		},
+		{
+			"path": "../Ejercicio_5"
+		},
+		{
+			"path": "../node_modules"
+		}
+	]
+}

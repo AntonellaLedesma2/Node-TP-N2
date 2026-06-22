@@ -1,0 +1,9 @@
+{
+  "name": "proyecto5-sitio-completo",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "dependencies": {
+    "upper-case": "^2.0.2"
+  }
+}

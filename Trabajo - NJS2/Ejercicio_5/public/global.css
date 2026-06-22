@@ -1,0 +1,33 @@
+:root {
+    --bg: #0a0a0c; --text: #bd00ff; --text-muted: #6f5577;
+    --card-bg: #111114; --border: #211a24; --active: #bd00ff;
+    --console-bg: #050507;
+}
+[data-theme="light"] {
+    --bg: #f9f5fb; --text: #660099; --text-muted: #625566;
+    --card-bg: #ffffff; --border: #dbcbde; --active: #8800cc;
+    --console-bg: #eae6eb;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Courier New', Courier, monospace; transition: 0.2s; }
+body { background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; margin: 0; }
+
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: var(--card-bg); border-bottom: 1px dashed var(--border); }
+.nav-brand { font-weight: bold; font-size: 1.1rem; letter-spacing: 1px; }
+.nav-links { display: flex; gap: 30px; }
+.nav-links button { background: none; border: none; color: var(--text); opacity: 0.4; font-size: 0.9rem; font-weight: bold; cursor: pointer; padding-bottom: 4px; }
+.nav-links button.active, .nav-links button:hover { opacity: 1; border-bottom: 1px solid var(--active); }
+.theme-switch { background: none; border: 1px solid var(--text); color: var(--text); padding: 5px 10px; cursor: pointer; border-radius: 4px; font-size: 0.8rem; }
+.theme-switch:hover { background: var(--text); color: var(--bg); }
+
+main { flex: 1; display: grid; grid-template-columns: 1fr; padding: 40px; width: 100%; max-width: 1200px; margin: 0 auto; align-items: center; }
+.mainframe { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 40px; min-height: 300px; display: flex; flex-direction: column; justify-content: center; gap: 20px; }
+.mainframe-title { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+
+h1 { font-size: 2.2rem; font-weight: normal; letter-spacing: -1px; }
+p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.6; max-width: 700px; }
+
+@media (max-width: 900px) {
+    .navbar { flex-direction: column; gap: 20px; padding: 20px; text-align: center; }
+    .nav-links { flex-wrap: wrap; justify-content: center; gap: 15px; }
+}

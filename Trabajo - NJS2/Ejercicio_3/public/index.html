@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAB_URL_PARSER // V1.0</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">NODE_LAB // P3.URL_PARSER</div>
+        <button class="btn-theme" onclick="toggleTheme()">← TEMA</button>
+    </header>
+
+    <div class="layout-grid">
+        <div class="panel">
+            <div class="panel-title">// INPUT_URL_STRING</div>
+            <input type="text" id="urlInput" value="https://api.github.com:443/users/defunkt/repos?sort=pushed#top">
+            <button class="action" onclick="analizarURL()">Parsear Estructura</button>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">// OBJECT_URL_OUTPUT</div>
+            <pre id="output">Esperando deserialización de segmentos...</pre>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        }
+
+        async function analizarURL() {
+            const url = document.getElementById('urlInput').value;
+            const res = await fetch(`/api/parse?url=${encodeURIComponent(url)}`);
+            const data = await res.json();
+            document.getElementById('output').innerText = JSON.stringify(data, null, 4);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAB_MODULOS // V1.0</title>
+    <link rel="stylesheet" href="/style.css"> <!-- Carga los estilos servidos por server.js -->
+</head>
+<body>
+
+    <!-- Encabezado con el título y el botón para cambiar de tema -->
+    <header>
+        <div class="logo">NODE_LAB // P1.MODULOS</div>
+        <button class="btn-theme" onclick="toggleTheme()">← TEMA</button>
+    </header>
+
+    <div class="layout-grid">
+
+        <!-- Panel izquierdo: botón que dispara la petición al backend -->
+        <div class="panel">
+            <div class="panel-title">// ACCIONES</div>
+            <button class="action-btn" onclick="ejecutarModulos()">
+                <span>Ejecutar componentes del módulo</span>
+                <span>[ ⚙️ ]</span>
+            </button>
+        </div>
+
+        <!-- Panel derecho: consola donde se muestran los resultados -->
+        <div class="console">
+            <div class="panel-title">// CONSOLE - OUTPUT</div>
+            <div id="log-container">
+                <div class="console-row"><span class="tag-init">[INIT]</span> Esperando ejecución de módulos personalizados...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Alterna entre tema oscuro y claro cambiando un atributo en <body>
+        function toggleTheme() {
+            const body = document.body;
+            body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        }
+
+        // Pide los datos a /api/datos y pinta el resultado en la consola simulada
+        async function ejecutarModulos() {
+            const res = await fetch('/api/datos');
+            const data = await res.json();
+            const container = document.getElementById('log-container');
+            
+            container.innerHTML = `
+                <div class="console-row"><span class="tag-init">[INIT]</span> Iniciando peticiones al servidor local...</div>
+                <div class="console-row"><span class="tag-load">[LOAD]</span> Módulo 'tiempo.js' -> Fecha: ${data.fecha}</div>
+                <div class="console-row"><span class="tag-load">[LOAD]</span> Módulo 'tiempo.js' -> Clima: ${data.clima.temperatura} [${data.clima.estado}]</div>
+                <div class="console-row"><span class="tag-load">[LOAD]</span> Módulo 'calculo.js' -> Operación: Sumar(15, 10)</div>
+                <div class="console-row"><span class="tag-done">[DONE]</span> Módulo 'calculo.js' -> Resultado retornado: ${data.resultado}</div>
+            `;
+        }
+    </script>
+</body>
+</html>
